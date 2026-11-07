@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anchoas Diferente | La Excelencia de Santoña</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', 'TU_PIXEL_ID');
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent', { content_name: 'VSL Landing Anchoas', content_category: 'Gourmet' });
+    </script>
+
+    <style>
+        :root {
+            --brand-red: #c4122e;
+            --brand-red-dark: #9e0e25;
+            --brand-black: #0a0a0a;
+            --brand-gold: #a68966;
+            --bg-cream: #fdfaf7;
+            --text-gray: #444444;
+            --border: #e2ddd9;
+            --shadow-strong: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-cream);
+            margin: 0; color: var(--brand-black);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
+        .text-center { text-align: center; }
+        .brand-font { font-family: 'Playfair Display', serif; letter-spacing: -0.01em; }
+
+        .urgency-bar {
+            background: var(--brand-black);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .urgency-bar span { color: var(--brand-red); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 18px 0;
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo-box { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
+        .logo-circle { width: 44px; height: 44px; background: black; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        .hero { padding: 60px 0; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 25px; }
+        .hero p.lead { font-size: 1.15rem; font-weight: 300; color: var(--text-gray); max-width: 720px; margin: 0 auto 40px; }
+
+        .vsl-outer {
+            max-width: 900px; margin: 0 auto 40px;
+            position: relative;
+            padding: 10px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-strong);
+        }
+        .vsl-container {
+            background: #000; border-radius: 8px; aspect-ratio: 16/9; margin-bottom: 30px;
+            position: relative; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+        }
+        .vsl-video-element {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .vsl-btn {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.5); border: none; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s;
+            background-image: url('https://diferente.es/wp-content/uploads/vsl-anchoas-portada.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .vsl-btn::before {
+            content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+        }
+        .vsl-btn:hover::before { background: rgba(0,0,0,0.2); }
+
+        .play-icon {
+            position: relative; z-index: 2; width: 80px; height: 80px; border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(196, 18, 46, 0.8); backdrop-filter: blur(8px); transition: 0.3s; box-shadow: 0 0 0 0 rgba(196, 18, 46, 0.4);
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(196, 18, 46, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(196, 18, 46, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(196, 18, 46, 0); }
+        }
+
+        .hero-btns { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn-hero-vsl {
+            display: inline-block;
+            background-color: var(--brand-red);
+            color: white;
+            text-decoration: none;
+            padding: 22px 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            box-shadow: 0 10px 20px rgba(196, 18, 46, 0.2);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 50px;
+        }
+        .btn-hero-vsl:hover {
+            background-color: var(--brand-red-dark);
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(196, 18, 46, 0.3);
+        }
+
+        .trust-seals { display: flex; justify-content: center; gap: 40px; margin: 40px 0; flex-wrap: wrap; }
+        .seal { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 10px; color: var(--brand-black); opacity: 0.8; }
+        .seal svg { width: 18px; height: 18px; color: var(--brand-red); stroke-width: 1.5px; }
+
+        .press-badges { display: flex; justify-content: center; gap: 40px; align-items: center; opacity: 0.45; margin: 40px 0 60px; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 30px; }
+        .press-item { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 0.85rem; font-style: italic; letter-spacing: 0.5px; }
+
+        .section-white { padding: 100px 0; background: #fff; border-top: 1px solid var(--border); }
+        .pain-box { max-width: 800px; margin: 0 auto; border-left: 3px solid var(--brand-red); padding-left: 40px; }
+
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; margin-top: 60px; }
+        .key-item svg { width: 32px; height: 32px; color: var(--brand-red); margin-bottom: 25px; stroke-width: 1.2px; }
+
+        .trust-dark { background: var(--brand-black); color: white; padding: 100px 0; }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-top: 50px; }
+        .trust-item h5 { color: var(--brand-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 15px; }
+
+        .section-reviews { padding: 100px 0; background: #fff; border-top: 1px solid var(--border); }
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+        .review-card { padding: 35px; border: 1px solid var(--border); border-radius: 8px; background: #fdfdfd; transition: 0.3s; }
+        .avatar { width: 50px; height: 50px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #999; margin-bottom: 15px; border: 1px solid #ddd; }
+        .stars { color: #d4af37; font-size: 0.8rem; letter-spacing: 2px; }
+
+        .section-packs { padding: 120px 0; }
+        .pack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 30px; margin-top: 60px; }
+        .pack-card { background: white; padding: 50px 40px; border: 1px solid var(--border); position: relative; display: flex; flex-direction: column; transition: 0.3s; }
+        .pack-card.featured { border: 1.5px solid var(--brand-red); transform: scale(1.02); z-index: 2; box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+        .best-seller { position: absolute; top: -1px; right: -1px; background: var(--brand-red); color: white; padding: 8px 18px; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        .price-tag { font-size: 3rem; font-weight: 300; margin-bottom: 25px; }
+        .content-list { padding: 0; list-style: none; margin-bottom: 40px; flex-grow: 1; font-size: 0.95rem; }
+        .content-list li { margin-bottom: 12px; display: flex; gap: 12px; color: var(--text-gray); }
+        .content-list li::before { content: "—"; color: var(--brand-red); }
+
+        .btn-buy {
+            display: inline-block; width: 100%; text-decoration: none; padding: 22px;
+            font-weight: 700; text-transform: uppercase; text-align: center;
+            background: var(--brand-black); color: white; border: none; font-size: 0.85rem; letter-spacing: 2px; transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-buy:hover { background: var(--brand-red); }
+
+        .faq-wrapper { max-width: 800px; margin: 100px auto; }
+        details { border-bottom: 1px solid var(--border); }
+        summary { padding: 30px 0; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
+        summary::after { content: "↓"; font-weight: 300; transition: 0.3s; }
+        details[open] summary::after { transform: rotate(180deg); }
+        .faq-ans { padding-bottom: 30px; color: var(--text-gray); font-size: 1rem; }
+
+        footer { background: #000; color: #ffffff; padding: 100px 0 60px; text-align: center; }
+        footer p { color: #b0b0b0; font-weight: 300; max-width: 500px; margin: 20px auto; font-size: 0.9rem; }
+        .footer-stores { margin: 40px 0; }
+        .footer-stores span { display: block; font-size: 1rem; color: #fff; margin-bottom: 8px; }
+        .legal { color: #666; font-size: 0.7rem; margin-top: 60px; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .pack-card.featured { transform: none; }
+            .pain-box { padding-left: 20px; }
+            .hero-btns { gap: 0; }
+            .btn-hero-vsl { width: 100%; padding: 20px 10px; font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="urgency-bar">
+        Campaña Actual: <span>Costera de Primavera de Santoña</span> - Últimos lotes disponibles hoy
+    </div>
+
+    <header role="banner">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="#" class="logo-box" aria-label="Inicio Anchoas Diferente">
+                <div class="logo-circle">
+                    <span style="color: white; font-weight: 700; font-family: 'Playfair Display'; font-size: 22px;">D</span>
+                </div>
+                <div style="line-height: 1.1;">
+                    <span class="brand-font" style="font-size: 1.1rem; font-weight: 700;">DIFERENTE</span><br>
+                    <span style="font-size: 8px; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 3px;">Santander · Gourmet</span>
+                </div>
+            </a>
+            <a href="#oferta" style="font-size: 9px; font-weight: 700; color: var(--brand-black); text-decoration: none; border: 1px solid var(--brand-black); padding: 10px 22px; text-transform: uppercase; letter-spacing: 1px;">Pedir Ahora</a>
+        </div>
+    </header>
+
+    <main role="main">
+        <section class="hero text-center container">
+            <h1 class="brand-font">No vuelvas a dejarte engañar:<br>Esta es la <span style="color: var(--brand-red)">única anchoa</span> que deberías comer.</h1>
+            <p class="lead">Descubre en 2 minutos por qué el 99% de las anchoas no son lo que parecen y cómo elegir la auténtica calidad de Santoña.</p>
+
+            <div class="vsl-outer">
+                <div class="vsl-container">
+<video id="vslVideo" class="vsl-video-element" preload="none" playsinline poster="https://diferente.es/wp-content/uploads/vsl-anchoas-portada.jpg">
+    <source src="https://anchoas.diferente.es/vsl-anchoas-editado.mp4" type="video/mp4">
+    Tu navegador no soporta la reproducción de video.
+</video>
+
+                    <button id="vslPlayBtn" class="vsl-btn" aria-label="Ver Video de Pilar">
+                        <div class="play-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <p style="position: relative; z-index: 2; color: white; font-size: 0.8rem; margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">Reproducir video explicativo (2:14)</p>
+                    </button>
+                </div>
+            </div>
+
+            <a href="#oferta" class="btn-hero-vsl">QUIERO MIS ANCHOAS</a>
+            <p style="font-size: 0.75rem; color: #999; margin-top: 15px;">Sin registros obligatorios · Compra en 1 minuto</p>
+
+            <div class="press-badges">
+                <span style="font-size: 0.6rem; text-transform: uppercase; color: #888;">Referencia en:</span>
+                <span class="press-item">El Diario Montañés</span>
+                <span class="press-item">Guía Repsol</span>
+                <span class="press-item">Premios Great Taste</span>
+            </div>
+
+            <div class="trust-seals">
+                <div class="seal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 12h20M12 2v20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>
+                    Envío Refrigerado
+                </div>
+                <div class="seal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Pago 100% Seguro
+                </div>
+                <div class="seal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5V2m0 20v-3m7-7h3M2 12h3m13.66-6.66l2.12-2.12M4.22 19.78l2.12-2.12m0-11.32L4.22 4.22m15.56 15.56l-2.12-2.12M12 15a3 3 0 100-6 3 3 0 000 6z"/></svg>
+                    Origen Santoña
+                </div>
+            </div>
+        </section>
+
+        <section class="section-white">
+            <div class="container">
+                <div class="pain-box">
+                    <h2 class="brand-font">¿Por qué la mayoría compra anchoas de mala calidad (y no lo sabe)?</h2>
+                    <p style="font-weight: 300; font-size: 1.25rem; color: var(--text-gray);">El bocarte del Cantábrico es un tesoro, pero la mayoría de las anchoas que encuentras han sido procesadas industrialmente, cargadas de sal para ocultar defectos y envasadas sin la maduración necesaria. El resultado es una anchoa salada, que se deshace y que ha perdido toda la esencia de Santoña.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" style="padding: 100px 0;">
+            <h2 class="brand-font text-center" style="font-size: 2.5rem;">Las 3 Claves de una Anchoa Maestra</h2>
+            <div class="edu-grid">
+                <article class="key-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12c-5.523 0-10 4.477-10 10M12 2C12 7.523 7.523 12 2 12M12 12L22 2M12 12L2 22"/></svg>
+                    <h4 class="brand-font">Textura Firme</h4>
+                    <p style="font-size: 0.9rem; font-weight: 300; color: var(--text-gray);">Una pieza de calidad se mantiene firme. El filete debe ser terso y de un color rojizo profundo, nunca pálido ni blando al tacto.</p>
+                </article>
+                <article class="key-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <h4 class="brand-font">Sabor Limpio</h4>
+                    <p style="font-size: 0.9rem; font-weight: 300; color: var(--text-gray);">El protagonismo es del mar y del pescado. La sal es solo un conservante invisible que permite que el sabor real florezca sin saturar.</p>
+                </article>
+                <article class="key-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v8M8 12h8"/></svg>
+                    <h4 class="brand-font">Sobada a mano</h4>
+                    <p style="font-size: 0.9rem; font-weight: 300; color: var(--text-gray);">La elaboración artesanal es la única forma de garantizar que cada filete está libre de espinas y con una textura de seda que ninguna máquina logra.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="trust-dark">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 class="brand-font" style="font-size: 2.2rem;">Garantía Diferente desde 1987</h2>
+                    <p style="font-weight: 300; opacity: 0.8; margin-bottom: 40px;">"Mi compromiso es simple: si no es la mejor anchoa que has probado este año, no quiero tu dinero. Llevamos casi 40 años seleccionando personalmente cada lata para que tú solo disfrutes."</p>
+                    <p class="brand-font" style="font-size: 1.5rem; font-style: italic; color: var(--brand-gold);">Pilar — Selección Diferente</p>
+                </div>
+
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <h5>Casi 40 Años de Rigor</h5>
+                        <p style="font-size: 0.85rem; opacity: 0.8; font-weight: 300;">Casi cuatro décadas eligiendo personalmente cada lote para nuestras tiendas emblemáticas de Santander.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-reviews container">
+            <div class="text-center rating-summary">
+                <div class="stars" style="font-size: 1.5rem; margin-bottom: 10px;">★★★★★</div>
+                <h2 class="brand-font" style="font-size: 2.2rem; margin: 0;">4.9 / 5 basado en opiniones reales</h2>
+            </div>
+            <div class="review-grid">
+                <article class="review-card">
+                    <div class="customer-info">
+                        <div class="avatar">JR</div>
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.85rem;">Javier Requejo</div>
+                            <div style="font-size: 0.7rem; color: #aaa;">Santander</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p style="font-style: italic; font-size: 0.9rem;">"He vivido en Santoña siempre y os aseguro que Pilar solo elige lo mejor de cada costera. La limpieza es impecable."</p>
+                </article>
+                <article class="review-card">
+                    <div class="customer-info">
+                        <div class="avatar">ML</div>
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.85rem;">Marta L.</div>
+                            <div style="font-size: 0.7rem; color: #aaa;">Madrid (Pozuelo)</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p style="font-style: italic; font-size: 0.9rem;">"Pedí el Pack Disfrutón y llegó en 24h perfecto. Nada que ver con las del súper. Imprescindibles en mis cenas."</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="oferta" class="section-packs container">
+            <h2 class="brand-font text-center" style="font-size: 2.5rem;">Elige tu Pack Diferente</h2>
+            <div class="pack-grid">
+                <div class="pack-card">
+                    <h3 class="brand-font" style="font-size: 1.5rem;">Pack Iniciación</h3>
+                    <p style="font-size: 0.75rem; color: #888; font-style: italic; margin-bottom: 20px;">Prueba las grandes marcas de Santoña.</p>
+                    <div class="price-tag">24,95€</div>
+                    <ul class="content-list">
+                        <li>1 x Octavillo Anchoas Catalina</li>
+                        <li>1 x Octavillo Anchoas La Reina del Cantábrico</li>
+                        <li>1 x Octavillo Anchoas Solano Arriola</li>
+                        <li>1 x Octavillo Anchoas Mingo</li>
+                    </ul>
+                    <a href="https://diferente.es/tienda-online/anchoas-de-santona/mingo/pack-iniciacion-anchoas/" target="_blank" class="btn-buy btn-outline" onclick="fbq('track', 'AddToCart', {value: 24.95, currency: 'EUR'});">Pedir Ahora</a>
+                </div>
+
+                <div class="pack-card featured">
+                    <div class="best-seller">El más elegido</div>
+                    <h3 class="brand-font" style="font-size: 1.5rem;">Pack Disfrutón</h3>
+                    <p style="font-size: 0.75rem; color: #888; font-style: italic; margin-bottom: 20px;">Una colección variada con las marcas más exclusivas.</p>
+                    <div class="price-tag" style="color: var(--brand-red);">49,90€</div>
+                    <ul class="content-list">
+                        <li><strong>1 x Octavillo Catalina</strong></li>
+                        <li><strong>1 x Octavillo La Reina del Cantábrico</strong></li>
+                        <li><strong>1 x Octavillo Solano Arriola</strong></li>
+                        <li><strong>1 x Octavillo Mingo</strong></li>
+                        <li><strong>1 x Lata Consorcio XXL</strong></li>
+                        <li><strong>1 x Lata El Capricho (95g)</strong></li>
+                    </ul>
+                    <a href="https://diferente.es/tienda-online/anchoas-de-santona/mingo/pack-anchoas-disfruton/" target="_blank" class="btn-buy" onclick="fbq('track', 'InitiateCheckout', {value: 49.90, currency: 'EUR'});">Añadir al carrito</a>
+                </div>
+
+                <div class="pack-card">
+                    <h3 class="brand-font" style="font-size: 1.5rem;">Pack Gourmet</h3>
+                    <p style="font-size: 0.75rem; color: #888; font-style: italic; margin-bottom: 20px;">Selección Premium de grandes formatos y panderetas.</p>
+                    <div class="price-tag">89,90€</div>
+                    <ul class="content-list">
+                        <li><strong>1 x Lata Anchoas La Reina del Cantábrico (180g)</strong></li>
+                        <li><strong>1 x Pandereta Anchoas Catalina (180g)</strong></li>
+                        <li><strong>1 x Pandereta Anchoas Solano Arriola (28-30 f.)</strong></li>
+                    </ul>
+                    <a href="https://diferente.es/tienda-online/anchoas-de-santona/conservas-catalina/pack-anchoas-premium/" target="_blank" class="btn-buy btn-outline" onclick="fbq('track', 'AddToCart', {value: 89.90, currency: 'EUR'});">Reservar Selección</a>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 60px;">
+                <a href="guia-de-la-anchoa.pdf" download="Guia-de-la-Anchoa-Diferente.pdf" class="btn-hero-vsl" style="margin-bottom: 0;" onclick="fbq('track', 'Lead', {content_name: 'Guia de la Anchoa'});">QUIERO MI GUIA DE LA ANCHOA</a>
+            </div>
+        </section>
+
+        <section class="faq-wrapper container">
+            <h2 class="brand-font text-center" style="font-size: 2rem; margin-bottom: 40px;">Preguntas Frecuentes</h2>
+            <details>
+                <summary>¿Cómo debo conservar las anchoas?</summary>
+                <div class="faq-ans">Siempre en la nevera, entre 5° y 12° C. Al ser una semiconserva, manténgalas en frío. Saque la lata 10 minutos antes de servir para que el aceite se fluidifique. Una vez abierta, consúmalas en un máximo de 7 días.</div>
+            </details>
+            <details>
+                <summary>¿Cuál es la diferencia con las del súper?</summary>
+                <div class="faq-ans">La diferencia es total: solo usamos Bocarte de Costera de Primavera, maduración lenta de meses y sobado manual filete a filete. Sin exceso de sal, solo sabor real de Santoña.</div>
+            </details>
+            <details>
+                <summary>¿Puedo enviarlo como regalo?</summary>
+                <div class="faq-ans">¡Por supuesto! Indique en la dirección de envío los datos del destinatario. Es el regalo gourmet por excelencia. No incluimos factura física en el paquete para envíos de regalo.</div>
+            </details>
+            <details>
+                <summary>¿Cuánto tarda y cuesta el envío?</summary>
+                <div class="faq-ans">Entrega en 24h laborables en toda la península si pides antes de las 13:00h. Los costes se calculan en el checkout. Pedidos superiores a 130€ tienen envío gratuito.</div>
+            </details>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="brand-font" style="font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 20px;">DIFERENTE</div>
+            <p>Seleccionando personalmente el mejor producto de Cantabria desde 1988.</p>
+
+            <div class="footer-stores">
+                <span style="display: block; font-weight: 800; color: var(--brand-gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 15px;">Nuestras Tiendas en Santander</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Alimentación+Diferente+Calle+Vargas+55+Santander" target="_blank" style="color: inherit; text-decoration: none; display: block; margin-bottom: 8px;">Calle Vargas, 55</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Alimentación+Diferente+Calle+Joaquín+Costa+28+Santander" target="_blank" style="color: inherit; text-decoration: none; display: block;">Calle Joaquín Costa, 28 (Sardinero)</a>
+            </div>
+
+            <div style="margin-top: 30px; font-size: 0.9rem;">
+                <p>Soporte: <a href="mailto:hola@diferente.es" style="color: inherit; text-decoration: none;">hola@diferente.es</a> | Tel: 942 37 50 77</p>
+                <p>WhatsApp: <a href="https://wa.me/34621189812" target="_blank" style="color: inherit; text-decoration: none;">621 18 98 12</a></p>
+            </div>
+
+            <div class="legal">
+                © 2026 DIFERENTE · AUTENTICIDAD DE SANTOÑA GARANTIZADA
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const playBtn = document.getElementById('vslPlayBtn');
+            const video = document.getElementById('vslVideo');
+
+            if (playBtn && video) {
+                playBtn.addEventListener('click', function() {
+                    video.setAttribute('controls', 'controls');
+                    playBtn.style.display = 'none';
+                    video.play();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

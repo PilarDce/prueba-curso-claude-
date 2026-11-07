@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>La noche tiene color · Diferente Gourmet</title>
+    <style>
+        /* ===== RESET ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Georgia, serif;
+            background-color: #F5F0EB;
+            margin: 0;
+            padding: 20px 10px;
+            color: #1D2B1F;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        img { border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+        a { color: inherit; }
+
+        /* ===== CONTENEDOR ===== */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+        }
+
+        /* ===== CABECERA MARCA ===== */
+        .brand-header { background-color: #1D2B1F; text-align: center; }
+        .brand-header .alim {
+            font-size: 11px;
+            color: #C8265A;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 18px 30px 5px;
+            display: block;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+        }
+        .brand-header h1 {
+            font-size: 52px;
+            color: #FFFFFF;
+            margin: 4px 0 8px;
+            font-weight: normal;
+            font-family: Georgia, serif;
+            line-height: 1.1;
+        }
+        .brand-header .subtitle {
+            font-size: 11px;
+            color: #C8265A;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 18px;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+        }
+        .brand-header .tagline {
+            font-size: 12px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 13px 30px;
+            display: block;
+            background-color: #C8265A;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        /* ===== HEADER PRINCIPAL ===== */
+        .header {
+            padding: 40px 35px 30px;
+            border-bottom: 1px solid #E8DFD4;
+            background-color: #FFFFFF;
+        }
+        .saludo {
+            font-size: 14px;
+            color: #1D2B1F;
+            margin-bottom: 18px;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+        }
+        .titulo {
+            font-size: 30px;
+            color: #1D2B1F;
+            margin: 0 0 14px;
+            font-weight: normal;
+            line-height: 1.3;
+            font-family: Georgia, serif;
+        }
+        .subtitulo {
+            font-size: 15px;
+            color: #C8265A;
+            font-style: italic;
+            font-family: Georgia, serif;
+        }
+
+        /* ===== CONTENIDO ===== */
+        .content { padding: 35px 35px 40px; line-height: 1.8; }
+        .parrafo {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #1D2B1F;
+            font-family: Georgia, serif;
+            line-height: 1.85;
+        }
+        .destaque { color: #C8265A; font-style: italic; }
+
+        /* ===== IMAGEN PRODUCTO ===== */
+        .imagen-section { margin: 32px 0; text-align: center; }
+        .imagen-section a { display: block; }
+        .imagen-section img {
+            width: 280px;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #E8DFD4;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ===== CARACTERÍSTICAS ===== */
+        .caracteristicas {
+            background-color: #F5F0EB;
+            padding: 25px 28px;
+            margin: 28px 0;
+            border-left: 4px solid #C8265A;
+        }
+        .caracteristica-item { margin-bottom: 22px; }
+        .caracteristica-item:last-child { margin-bottom: 0; }
+        .caracteristica-titulo {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: #C8265A;
+            margin-bottom: 7px;
+            font-weight: normal;
+            display: block;
+        }
+        .caracteristica-texto { font-size: 14px; color: #1D2B1F; line-height: 1.75; }
+
+        /* ===== CTA BOTÓN ===== */
+        .cta-wrap { text-align: center; margin-top: 30px; }
+        .cta-button {
+            display: inline-block;
+            background-color: #1D2B1F;
+            color: #F5F0EB !important;
+            padding: 16px 40px;
+            text-decoration: none;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+
+        /* ===== FIRMA ===== */
+        .firma {
+            margin-top: 40px;
+            padding-top: 22px;
+            border-top: 1px solid #E8DFD4;
+        }
+        .firma-nombre { font-weight: 700; font-size: 15px; color: #1D2B1F; }
+        .firma-empresa { font-size: 12px; color: #999999; margin-top: 4px; line-height: 1.6; }
+        .pd { font-size: 13px; color: #666666; line-height: 1.75; margin-top: 22px; }
+
+        /* ===== FOOTER: QUOTE ===== */
+        .footer-quote { background-color: #1D2B1F; padding: 18px 30px; text-align: center; }
+        .footer-quote p {
+            font-size: 14px;
+            color: #F4D9A6;
+            font-style: italic;
+            font-family: Georgia, serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER: DIRECCIONES ===== */
+        .footer-addresses {
+            background-color: #FFFFFF;
+            padding: 22px 30px;
+            text-align: center;
+            border-top: 1px solid #E8DFD4;
+        }
+        .footer-addresses p {
+            font-size: 13px;
+            color: #1D2B1F;
+            margin: 7px 0;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            line-height: 1.5;
+        }
+        .addr-link { color: #C8265A; text-decoration: none; }
+
+        /* ===== FOOTER: REDES SOCIALES ===== */
+        .footer-social { background-color: #C8265A; padding: 28px 30px; text-align: center; }
+        .footer-social p {
+            font-size: 14px;
+            color: #FFFFFF;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-weight: 700;
+            margin: 0 0 20px;
+            line-height: 1.5;
+        }
+        .social-icons { display: inline-block; }
+        .social-icon {
+            display: inline-block;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.25);
+            color: #FFFFFF !important;
+            text-decoration: none;
+            font-size: 17px;
+            line-height: 44px;
+            text-align: center;
+            margin: 0 6px;
+            font-family: Georgia, serif;
+            font-weight: bold;
+        }
+
+        /* ===== FOOTER: LEGAL / BAJA ===== */
+        .footer-legal-block { background-color: #C8A882; padding: 28px 30px; text-align: center; }
+        .footer-legal-block p {
+            font-size: 13px;
+            color: #1D2B1F;
+            line-height: 1.75;
+            margin: 0 0 10px;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+        }
+        .footer-button {
+            display: inline-block;
+            background-color: #F4D9A6;
+            color: #1D2B1F !important;
+            padding: 14px 38px;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+
+        /* ===== RESPONSIVE: MOBILE ===== */
+        @media screen and (max-width: 600px) {
+            body { padding: 0 !important; background-color: #FFFFFF !important; }
+
+            .container { width: 100% !important; max-width: 100% !important; }
+
+            .brand-header h1 { font-size: 38px !important; }
+            .brand-header .alim,
+            .brand-header .subtitle,
+            .brand-header .tagline { padding-left: 20px !important; padding-right: 20px !important; }
+
+            .header { padding: 28px 20px 22px !important; }
+            .titulo { font-size: 24px !important; }
+            .subtitulo { font-size: 14px !important; }
+
+            .content { padding: 28px 20px 32px !important; }
+            .parrafo { font-size: 15px !important; line-height: 1.8 !important; }
+
+            .imagen-section img { width: 240px !important; }
+
+            .cta-button {
+                display: block !important;
+                text-align: center !important;
+                padding: 18px 20px !important;
+                font-size: 12px !important;
+                letter-spacing: 1.5px !important;
+            }
+
+            .caracteristicas { padding: 20px !important; }
+            .caracteristica-texto { font-size: 14px !important; }
+
+            .social-icon {
+                width: 48px !important;
+                height: 48px !important;
+                line-height: 48px !important;
+                font-size: 18px !important;
+                margin: 0 4px !important;
+            }
+
+            .footer-quote { padding: 16px 20px !important; }
+            .footer-addresses { padding: 18px 20px !important; }
+            .footer-addresses p { font-size: 12px !important; }
+            .footer-social { padding: 24px 20px !important; }
+            .footer-legal-block { padding: 24px 20px !important; }
+
+            .footer-button {
+                display: block !important;
+                padding: 16px 20px !important;
+                margin-top: 10px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- CABECERA MARCA -->
+        <div class="brand-header">
+            <span class="alim">Alimentación</span>
+            <h1>Diferente</h1>
+            <span class="subtitle">Gourmet • Santander</span>
+            <span class="tagline">Descubrimiento de esta semana</span>
+        </div>
+
+        <!-- HEADER PRINCIPAL -->
+        <div class="header">
+            <div class="saludo">Hola, {{ first_name|default:"" }},</div>
+            <div class="titulo">La noche tiene color</div>
+            <div class="subtitulo">Un AOVE que merece estar en tu mesa</div>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="content">
+
+            <p class="parrafo">
+                Esta semana llegó algo a la tienda que llevaba tiempo buscando. Un aceite que no necesita presentación ruidosa. Existe, simplemente. Y cuando lo pruebas, entiendes por qué alguien dedica tanto cuidado a cada botella.
+            </p>
+
+            <p class="parrafo">
+                <span class="destaque">AOVE Night Collection</span> es de esos productos que te enseña lo que no sabías que necesitabas saber sobre un aceite. Cristal oscuro. Edición limitada. La clase de cosas que buscan los que entienden, sin que nadie tenga que convencerlos.
+            </p>
+
+            <!-- IMAGEN CON ENLACE AL PRODUCTO -->
+            <div class="imagen-section">
+                <a href="https://diferente.es/tienda-online/aceites-de-oliva/otros-aceites-de-oliva/aove-night-collection-eco-cristal-500ml/" target="_blank">
+                    <img src="https://diferente.es/wp-content/uploads/2026/05/2558-AOVE-NIGHT-COLLECTION-ECO-CRISTAL-500ML-700x700.png"
+                         alt="AOVE Night Collection Eco Cristal 500ml — Ver en tienda"
+                         width="280"
+                         height="280">
+                </a>
+            </div>
+
+            <p class="parrafo" style="margin-top: 10px;">
+                <strong>Lo que pasa cuando lo pruebas:</strong>
+            </p>
+
+            <p class="parrafo">
+                No pide permiso. Entra con presencia. Notas mineral, herbáceas, una oscuridad que respeta. No es explosivo. Es contundente. La clase de sabor que te hace bajar el ritmo y probar de nuevo, porque querrás estar segura de lo que acabas de sentir.
+            </p>
+
+            <!-- CARACTERÍSTICAS -->
+            <div class="caracteristicas">
+                <div class="caracteristica-item">
+                    <span class="caracteristica-titulo">En la mesa</span>
+                    <div class="caracteristica-texto">Con quesos de cierto carácter. Con pan tostado. En crudo sobre un buen pescado. En sopas oscuras donde su complejidad tenga espacio para respirar. Funciona en casi todas partes.</div>
+                </div>
+                <div class="caracteristica-item">
+                    <span class="caracteristica-titulo">Para quién es</span>
+                    <div class="caracteristica-texto">Para quien disfruta comiendo con intención. Para los que entienden que un buen aceite no es lujo, es respeto. Para quien sabe la diferencia cuando la prueba.</div>
+                </div>
+            </div>
+
+            <p class="parrafo">
+                En el equipo creemos que descubrimientos así merecen compartirse. Cada semana traeremos algo nuevo, algo que hemos probado, algo que tiene historia. Sin urgencia. Sin presión. Solo la invitación de quien conoce a quien aprecia.
+            </p>
+
+            <!-- CTA BOTÓN -->
+            <div class="cta-wrap">
+                <a href="https://diferente.es/tienda-online/aceites-de-oliva/otros-aceites-de-oliva/aove-night-collection-eco-cristal-500ml/" class="cta-button" target="_blank">Descubre el AOVE</a>
+            </div>
+
+            <!-- FIRMA -->
+            <div class="firma">
+                <div class="firma-nombre">Cristina</div>
+                <div class="firma-empresa">Diferente<br>Santander</div>
+                <p class="pd">
+                    <strong>P.D.</strong> Si hay algo que quieras descubrir conmigo, o si tienes alguna pregunta sobre este aceite, responde a este email. Sigo aquí.
+                </p>
+            </div>
+        </div>
+
+        <!-- FOOTER: QUOTE -->
+        <div class="footer-quote">
+            <p>"Que poco cuesta lo bueno en Diferente"</p>
+        </div>
+
+        <!-- FOOTER: DIRECCIONES -->
+        <div class="footer-addresses">
+            <p><strong>Diferente Vargas</strong> &nbsp;<span class="addr-link">C/ Vargas 55</span>&nbsp; · &nbsp;Santander, Cantabria</p>
+            <p><strong>Diferente Sardinero</strong> &nbsp;<span class="addr-link">C/ Joaquín Costa, 28</span>&nbsp; · &nbsp;Santander, Cantabria</p>
+        </div>
+
+        <!-- FOOTER: REDES SOCIALES -->
+        <div class="footer-social">
+            <p>Síguenos en redes sociales, ¡y no te pierdas nada!</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/diferente.es/" class="social-icon" target="_blank">&#9432;</a>
+                <a href="https://www.youtube.com/@ALIMENTACIONDIFERENT/featured" class="social-icon" target="_blank">&#9654;</a>
+                <a href="https://www.tiktok.com/@diferente.es" class="social-icon" target="_blank">&#9835;</a>
+            </div>
+        </div>
+
+        <!-- FOOTER: LEGAL / BAJA -->
+        <div class="footer-legal-block">
+            <p>Somos una empresa en la que la experiencia del cliente es uno de nuestros pilares fundamentales, y los emails son la forma que tenemos de contactar contigo.</p>
+            <p>De vez en cuando, enviamos descuentos, contenido útil y novedades sobre Diferente.</p>
+            <p>Si deseas darte de baja, no hay problema. Solo tienes que hacer clic en este botón:</p>
+            <a href="{{ unsubscribe_url }}" class="footer-button">Darme de baja</a>
+        </div>
+
+    </div>
+</body>
+</html>
