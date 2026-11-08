@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12b5cb">
+<title>¿Dónde están las maletas?</title>
+<style>
+:root{--g:#12b5cb;--gd:#0b8fa3;--o:#ff6f59;--sun:#ffc93c;--bg:#fff7e6;--card:#ffffff;--line:#f0e1c0;--tx:#16384a;--mut:#7a8f98}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#cfeff5;color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{max-width:480px;height:100%;margin:0 auto;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+header{background:linear-gradient(135deg,#12b5cb,#2fd3b7);color:#fff;box-shadow:0 2px 8px #0b8fa355;display:flex;align-items:center;gap:12px;padding:14px 16px;font-weight:700;font-size:19px;flex:none}
+header .t{flex:1}
+header button{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;padding:4px 8px}
+main{flex:1;overflow-y:auto;padding:16px}
+.btn{display:block;width:100%;background:linear-gradient(135deg,#ff6f59,#ff9a4d);box-shadow:0 3px 8px #ff6f5944;color:#fff;border:0;border-radius:6px;padding:15px;font-size:16px;font-weight:700;margin:10px 0;cursor:pointer}
+.btn:active{filter:brightness(.85)}
+.btn.sec{background:var(--card);border:1px solid var(--line);color:var(--tx)}
+.empty{text-align:center;margin-top:22vh;color:var(--mut)}
+.empty::before{content:"🏝️";display:block;font-size:64px;margin-bottom:10px}
+label{display:block;margin:18px 0 6px;font-size:14px;color:var(--mut)}
+input[type=text],input[type=number],select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:6px;color:var(--tx);padding:13px;font-size:16px}
+.row{display:flex;gap:10px}
+input[type=range]{width:100%;accent-color:var(--o)}
+.badge{display:inline-block;background:var(--sun);color:#16384a !important;border-radius:12px;padding:2px 10px;font-size:13px;font-weight:700;margin-left:8px}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.type{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:22px 8px;text-align:center;cursor:pointer;font-weight:600}
+.type .i{font-size:38px;display:block;margin-bottom:6px}
+.type.on{border-color:var(--g);background:#e0f7fa}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.act{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:14px 4px;text-align:center;font-size:13px;cursor:pointer;color:var(--mut)}
+.act .i{font-size:30px;display:block;margin-bottom:4px;filter:grayscale(1) opacity(.7)}
+.act.on{border-color:var(--sun);background:#fff3c4;color:var(--tx)}
+.act.on .i{filter:none}
+.sub{margin:22px 0 8px;font-size:12px;letter-spacing:1px;color:var(--mut);text-transform:uppercase}
+.trip{background:var(--card);border-radius:10px;padding:14px;margin-bottom:12px;cursor:pointer;border-left:5px solid var(--g)}
+.trip b{font-size:17px}.trip small{color:var(--mut);display:block;margin-top:4px}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--g)}
+.help{font-size:13px;color:var(--mut);line-height:1.4;margin-bottom:12px}
+.cat{background:var(--gd);color:#fff;padding:8px 12px;font-weight:700;font-size:13px;letter-spacing:.5px;text-transform:uppercase;display:flex;justify-content:space-between;margin-top:14px;border-radius:4px 4px 0 0}
+.item{display:flex;align-items:center;gap:12px;padding:13px 10px;border-bottom:1px solid var(--line);background:var(--bg);position:relative;touch-action:pan-y;transition:transform .2s,opacity .2s}
+.item .c{width:24px;height:24px;border-radius:50%;border:2px solid var(--mut);flex:none;display:grid;place-items:center;font-size:14px;color:#fff}
+.item.done .c{background:var(--g);border-color:var(--g)}
+.item.done .n{text-decoration:line-through;color:var(--mut)}
+.item .n{flex:1;font-size:16px}
+.qty{display:flex;align-items:center;gap:6px;color:var(--mut)}
+.qty button{background:var(--card);border:1px solid var(--line);color:var(--tx);width:28px;height:28px;border-radius:50%;font-size:16px;cursor:pointer}
+.add{display:flex;gap:8px;margin-top:8px}
+.add input{flex:1}.add button{background:var(--sun);color:#16384a;border:0;border-radius:6px;width:48px;font-size:22px;font-weight:700;cursor:pointer}
+.hint{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#e44;font-size:12px;opacity:0}
+.toast{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#000c;color:#fff;padding:10px 16px;border-radius:20px;font-size:14px}
+.tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px;margin-bottom:14px}
+.tabs button{flex:1;border:0;background:none;padding:10px;border-radius:7px;font-weight:700;font-size:14px;color:var(--mut);cursor:pointer}
+.tabs button.on{background:var(--g);color:#fff}
+.tk{background:var(--card);border-radius:10px;margin-bottom:12px;border-top:5px solid var(--g);overflow:hidden;box-shadow:0 2px 6px #0001}
+.tk .h{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-size:13px;color:var(--mut);font-weight:700}
+.tk .r{display:flex;align-items:center;justify-content:space-between;padding:4px 14px 12px;gap:8px}
+.tk .r b{font-size:22px;display:block}.tk .r small{color:var(--mut)}
+.tk .mid{font-size:26px}
+.tk .d{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;padding:10px 14px;border-top:1px dashed var(--line);font-size:13px}
+.tk .d span{color:var(--mut);display:block;font-size:11px;text-transform:uppercase}
+.tk .f{padding:8px 14px;border-top:1px dashed var(--line);display:flex;gap:8px;flex-wrap:wrap}
+.tk .f a,.tk .f button{background:#e0f7fa;color:var(--gd);border:0;border-radius:6px;padding:8px 12px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
+.tk .f button.x{background:#ffe3de;color:#c43d28;margin-left:auto}
+.tk.t-tren{border-top-color:var(--o)}.tk.t-bus{border-top-color:var(--sun)}.tk.t-barco{border-top-color:#2f6fed}.tk.t-otro{border-top-color:var(--mut)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f2 label{margin:10px 0 4px}.f2 .full{grid-column:1/-1}
+textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:6px;color:var(--tx);padding:13px;font-size:16px;font-family:inherit;resize:vertical}
+</style>
+</head>
+<body>
+<div id="app">
+  <header><button id="back" hidden>←</button><span class="t" id="title">🧳 Dónde están las maletas</span><button id="share" hidden title="Compartir">⤴</button><button id="del" hidden title="Borrar viaje">🗑</button></header>
+  <main id="main"></main>
+</div>
+<script>
+const ACTS=[["nadar","🏊","Nadar"],["cena","🍽️","Cena elegante"],["correr","👟","Correr"],["bici","🚴","Bici"],["senderismo","🥾","Senderismo"],["bebe","🍼","Bebé"],["playa","🏖️","Playa"],["internacional","🌍","Internacional"],["nieve","❄️","Deportes nieve"],["trabajo","💻","Trabajo"],["acampada","🏕️","Acampada"],["gimnasio","🏋️","Gimnasio"],["foto","📷","Fotografía"],["moto","🏍️","Moto"]];
+const BASE={
+ "Artículos de tocador":["Bastoncillos de oídos","Colonia","Cortaúñas","Pinzas","Corrector en barra","Cepillo de dientes","Pasta de dientes","Cepillo para el pelo","Hilo dental","Desodorante","Máquina de afeitar","Gel de afeitar","Lentillas"],
+ "Ropa":["Camisetas","Pantalones","Ropa interior","Calcetines","Pijama","Chaqueta","Zapatos cómodos"],
+ "Documentos":["DNI / Pasaporte","Billetes / reservas","Tarjeta sanitaria","Cartera y tarjetas","Seguro de viaje"],
+ "Electrónica":["Móvil y cargador","Auriculares","Batería externa","Adaptador de enchufe"],
+ "Varios":["Medicinas","Gafas de sol","Bolsa de aseo","Llaves de casa"]};
+const EXTRA={
+ nadar:{"Natación":["Bañador","Gafas de natación","Toalla","Chanclas"]},
+ cena:{"Cena elegante":["Vestido / traje","Zapatos de vestir","Corbata / pañuelo","Complementos"]},
+ correr:{"Correr":["Zapatillas de correr","Ropa deportiva","Cinta para el pelo","Reloj deportivo"]},
+ bici:{"Bici":["Casco","Guantes","Candado","Bomba y kit de pinchazos"]},
+ senderismo:{"Senderismo":["Botas de montaña","Mochila pequeña","Cantimplora","Protector solar","Gorra"]},
+ bebe:{"Bebé":["Pañales","Toallitas","Biberón","Ropa de bebé","Chupete","Cochecito"]},
+ playa:{"Playa":["Bañador","Toalla de playa","Crema solar","Sombrero","Chanclas","Sombrilla"]},
+ internacional:{"Internacional":["Pasaporte","Visado","Moneda local","Tarjeta SIM / roaming","Adaptador internacional"]},
+ nieve:{"Deportes de nieve":["Chaqueta de esquí","Pantalón de nieve","Guantes","Gorro","Gafas de ventisca","Forfait"]},
+ trabajo:{"Trabajo":["Portátil y cargador","Tarjetas de visita","Libreta y bolígrafo","Ropa formal","Pen drive"]},
+ acampada:{"Acampada":["Tienda de campaña","Saco de dormir","Linterna","Navaja multiusos","Repelente de insectos"]},
+ gimnasio:{"Gimnasio":["Ropa de gimnasio","Toalla","Botella de agua","Candado"]},
+ foto:{"Fotografía":["Cámara","Objetivos","Tarjetas de memoria","Trípode","Cargador de cámara"]},
+ moto:{"Moto":["Casco","Guantes de moto","Chaqueta de protección","Intercomunicador"]}};
+
+const $=s=>document.querySelector(s),main=$("#main");
+let S={trips:[]},draft=null,cur=null,view="home",tab="maleta",tkEdit=null;
+const TIPOS={avion:["✈️","Avión"],tren:["🚆","Tren"],bus:["🚌","Autobús"],barco:["⛴️","Barco"],otro:["🎫","Otro"]};
+try{S=JSON.parse(localStorage.getItem("maletas")||'{"trips":[]}')}catch(e){}
+const save=()=>{try{localStorage.setItem("maletas",JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+function chrome(title,{back,share,del}={}){
+  $("#title").textContent=title;$("#back").hidden=!back;$("#share").hidden=!share;$("#del").hidden=!del;
+}
+function go(v){view=v;({home,nuevo,actividades,lista})[v]();main.scrollTop=0}
+$("#back").onclick=()=>go(view==="actividades"?"nuevo":"home");
+
+function home(){
+  chrome("🧳 Dónde están las maletas");
+  let h="";
+  if(!S.trips.length)h=`<div class="empty">No has planificado ningún viaje.</div>`;
+  else h=S.trips.map((t,i)=>{const tot=count(t),d=tot.done;return `<div class="trip" data-i="${i}"><b>${esc(t.dest)}</b><small>${t.dia} de ${MESES[t.mes]} · ${t.dias} días · ${t.tipo==="negocios"?"Negocios":"Placer"}</small><small>${d}/${tot.all} artículos preparados · ${(t.tickets||[]).length} billetes</small><div class="bar"><i style="width:${tot.all?d/tot.all*100:0}%"></i></div></div>`}).join("");
+  main.innerHTML=h+`<button class="btn" id="nv">Añadir nuevo viaje</button>`;
+  main.querySelectorAll(".trip").forEach(e=>e.onclick=()=>{cur=+e.dataset.i;tab="maleta";tkEdit=null;go("lista")});
+  $("#nv").onclick=()=>{const d=new Date();draft={dest:"",dia:d.getDate(),mes:d.getMonth(),dias:7,tipo:"placer",acts:[],custom:[]};go("nuevo")};
+}
+function count(t){let all=0,done=0;t.cats.forEach(c=>c.items.forEach(i=>{all++;if(i.ok)done++}));return{all,done}}
+
+function nuevo(){
+  chrome("Nuevo viaje",{back:1});
+  main.innerHTML=`
+  <label>Destino</label><input type="text" id="dest" placeholder="Ej. Bogotá, Colombia" value="${esc(draft.dest)}">
+  <label>Fecha del viaje</label>
+  <div class="row"><input type="number" id="dia" min="1" max="31" value="${draft.dia}" style="max-width:90px"><select id="mes">${MESES.map((m,i)=>`<option value="${i}" ${i===draft.mes?"selected":""}>${m.toUpperCase()}</option>`).join("")}</select></div>
+  <label>Duración de la estancia <span class="badge" id="db"></span></label><input type="range" id="dias" min="1" max="60" value="${draft.dias}">
+  <label>Tipo de viaje</label>
+  <div class="types"><div class="type ${draft.tipo==="negocios"?"on":""}" data-t="negocios"><span class="i">💼</span>Negocios</div><div class="type ${draft.tipo==="placer"?"on":""}" data-t="placer"><span class="i">🌴</span>Placer</div></div>
+  <button class="btn" id="sel" style="margin-top:26px">Seleccionar actividades</button>`;
+  const upd=()=>{$("#db").textContent=draft.dias+(draft.dias===1?" día":" días")};upd();
+  $("#dest").oninput=e=>draft.dest=e.target.value;
+  $("#dia").oninput=e=>draft.dia=Math.min(31,Math.max(1,+e.target.value||1));
+  $("#mes").onchange=e=>draft.mes=+e.target.value;
+  $("#dias").oninput=e=>{draft.dias=+e.target.value;upd()};
+  main.querySelectorAll(".type").forEach(e=>e.onclick=()=>{draft.tipo=e.dataset.t;main.querySelectorAll(".type").forEach(x=>x.classList.toggle("on",x===e))});
+  $("#sel").onclick=()=>{if(!draft.dest.trim()){toast("Escribe un destino");$("#dest").focus();return}go("actividades")};
+}
+
+function actividades(){
+  chrome("Actividades",{back:1});
+  main.innerHTML=`<div class="grid">${ACTS.map(a=>`<div class="act ${draft.acts.includes(a[0])?"on":""}" data-k="${a[0]}"><span class="i">${a[1]}</span>${a[2]}</div>`).join("")}</div>
+  <div class="sub">Personalizar</div>
+  <div class="grid" id="cg">${draft.custom.map(c=>`<div class="act on"><span class="i">⭐</span>${esc(c)}</div>`).join("")}<div class="act" id="addc"><span class="i" style="filter:none">➕</span>Añadir actividad</div></div>
+  <button class="btn" id="gen" style="margin-top:26px">Generar lista</button>`;
+  main.querySelectorAll(".act[data-k]").forEach(e=>e.onclick=()=>{const k=e.dataset.k,i=draft.acts.indexOf(k);i<0?draft.acts.push(k):draft.acts.splice(i,1);e.classList.toggle("on")});
+  $("#addc").onclick=()=>{const n=prompt("Nombre de la actividad:");if(n&&n.trim()){draft.custom.push(n.trim());actividades()}};
+  $("#gen").onclick=generar;
+}
+
+function generar(){
+  const cats={};
+  const put=(c,l)=>{cats[c]=cats[c]||[];l.forEach(n=>{if(!cats[c].includes(n))cats[c].push(n)})};
+  for(const c in BASE)put(c,BASE[c]);
+  if(draft.tipo==="negocios")put("Negocios",["Ropa formal","Portátil y cargador","Tarjetas de visita","Documentación de la reunión"]);
+  if(draft.tipo==="placer")put("Ocio",["Libro / e-reader","Guía de viaje","Mochila de día"]);
+  draft.acts.forEach(a=>{const e=EXTRA[a];for(const c in e)put(c,e[c])});
+  draft.custom.forEach(c=>put(c,["(añade tus cosas)"]));
+  const d=draft.dias,cant=n=>/Camisetas|Ropa interior|Calcetines/.test(n)?Math.min(d+1,10):1;
+  const t={dest:draft.dest.trim(),dia:draft.dia,mes:draft.mes,dias:d,tipo:draft.tipo,
+    cats:Object.entries(cats).map(([n,l])=>({n,items:l.map(x=>({n:x,q:cant(x),ok:false}))}))};
+  t.tickets=[];S.trips.unshift(t);save();cur=0;tab="maleta";tkEdit=null;go("lista");
+}
+
+function lista(){
+  const t=S.trips[cur];if(!t)return go("home");
+  chrome("Lista de equipaje",{back:1,share:1,del:1});
+  const c=count(t);
+  const tabs=`<div class="tabs"><button data-tab="maleta" class="${tab==="maleta"?"on":""}">🧳 Maleta</button><button data-tab="billetes" class="${tab==="billetes"?"on":""}">🎫 Billetes (${(t.tickets||[]).length})</button></div>`;
+  if(tab==="billetes"){billetes(t,tabs);return}
+  let h=tabs+`<div class="help"><b>${esc(t.dest)}</b> · ${t.dia} de ${MESES[t.mes]} · ${t.dias} días<br>Aquí está la lista de contenido. Marca los artículos como hechos en las maletas y desliza para eliminar los que no necesites. Toca "+" para añadir más cantidad. ¡Viaje feliz!</div>
+  <div class="bar" style="margin-bottom:6px"><i style="width:${c.all?c.done/c.all*100:0}%"></i></div><div class="help">${c.done}/${c.all} preparados</div>`;
+  t.cats.forEach((cat,ci)=>{
+    const d=cat.items.filter(i=>i.ok).length;
+    h+=`<div class="cat"><span>${esc(cat.n)}</span><span>${d}/${cat.items.length}</span></div>`;
+    cat.items.forEach((it,ii)=>{h+=`<div class="item ${it.ok?"done":""}" data-c="${ci}" data-i="${ii}"><span class="hint">Eliminar</span><span class="c">${it.ok?"✓":""}</span><span class="n">${esc(it.n)}</span><span class="qty"><button data-a="-">−</button>${it.q}<button data-a="+">+</button></span></div>`});
+    h+=`<div class="add"><input type="text" placeholder="Añadir a ${esc(cat.n)}…" data-c="${ci}"><button data-c="${ci}">+</button></div>`;
+  });
+  h+=`<button class="btn" id="ok">Aceptar</button>`;
+  main.innerHTML=h;
+  bindTabs();
+  const keep=main.scrollTop;
+  main.querySelectorAll(".item").forEach(el=>{
+    const ci=+el.dataset.c,ii=+el.dataset.i,it=t.cats[ci].items[ii];
+    el.onclick=e=>{
+      const b=e.target.closest("button");
+      if(b){it.q=Math.max(1,it.q+(b.dataset.a==="+"?1:-1))}else it.ok=!it.ok;
+      save();const s=main.scrollTop;lista();main.scrollTop=s;
+    };
+    let x0=null,dx=0;
+    el.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;dx=0},{passive:true});
+    el.addEventListener("touchmove",e=>{dx=e.touches[0].clientX-x0;el.style.transform=`translateX(${dx}px)`;el.style.opacity=1-Math.abs(dx)/300},{passive:true});
+    el.addEventListener("touchend",()=>{if(Math.abs(dx)>110){t.cats[ci].items.splice(ii,1);save();const s=main.scrollTop;lista();main.scrollTop=s}else{el.style.transform="";el.style.opacity=1}x0=null});
+    // ratón: clic derecho o doble clic para eliminar
+    el.oncontextmenu=e=>{e.preventDefault();t.cats[ci].items.splice(ii,1);save();const s=main.scrollTop;lista();main.scrollTop=s};
+  });
+  main.querySelectorAll(".add").forEach(a=>{
+    const inp=a.querySelector("input"),ci=+inp.dataset.c;
+    const add=()=>{const v=inp.value.trim();if(!v)return;t.cats[ci].items.push({n:v,q:1,ok:false});save();const s=main.scrollTop;lista();main.scrollTop=s};
+    a.querySelector("button").onclick=add;inp.onkeydown=e=>{if(e.key==="Enter")add()};
+  });
+  $("#ok").onclick=()=>go("home");
+  main.scrollTop=keep;
+}
+
+function bindTabs(){main.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;tkEdit=null;lista()})}
+const fmtF=v=>{if(!v)return"";const[y,m,d]=v.split("-");return `${+d} ${MESES[m-1].slice(0,3)} ${y}`};
+function billetes(t,tabs){
+  t.tickets=t.tickets||[];
+  if(tkEdit!==null)return formBillete(t,tabs);
+  let h=tabs;
+  if(!t.tickets.length)h+=`<div class="help" style="text-align:center;margin:24px 0">Aún no has guardado ningún billete.<br>Añade los de avión, tren, autobús o barco con todos sus detalles.</div>`;
+  t.tickets.forEach((k,i)=>{
+    const ty=TIPOS[k.tipo]||TIPOS.otro;
+    h+=`<div class="tk t-${k.tipo}"><div class="h"><span>${ty[0]} ${ty[1]}${k.cia?" · "+esc(k.cia):""}${k.num?" · "+esc(k.num):""}</span><span>${fmtF(k.fecha)}</span></div>
+    <div class="r"><div><b>${esc(k.orig||"—")}</b><small>${esc(k.hsal||"")}</small></div><span class="mid">${ty[0]}</span><div style="text-align:right"><b>${esc(k.dest||"—")}</b><small>${esc(k.hlleg||"")}</small></div></div>
+    ${(k.asiento||k.loc||k.puerta||k.precio)?`<div class="d">${k.loc?`<div><span>Localizador</span>${esc(k.loc)}</div>`:""}${k.asiento?`<div><span>Asiento / vagón</span>${esc(k.asiento)}</div>`:""}${k.puerta?`<div><span>Terminal / puerta</span>${esc(k.puerta)}</div>`:""}${k.precio?`<div><span>Precio</span>${esc(k.precio)}</div>`:""}</div>`:""}
+    ${k.notas?`<div class="d"><div style="grid-column:1/-1"><span>Notas</span>${esc(k.notas)}</div></div>`:""}
+    <div class="f">${k.file?`<a href="${k.file}" target="_blank" download="${esc(k.fname||"billete")}">📎 ${esc(k.fname||"Ver archivo")}</a>`:""}<button data-e="${i}">Editar</button><button class="x" data-x="${i}">Borrar</button></div></div>`;
+  });
+  h+=`<button class="btn" id="addtk">+ Añadir billete</button>`;
+  main.innerHTML=h;bindTabs();
+  $("#addtk").onclick=()=>{tkEdit=-1;lista()};
+  main.querySelectorAll("[data-e]").forEach(b=>b.onclick=()=>{tkEdit=+b.dataset.e;lista()});
+  main.querySelectorAll("[data-x]").forEach(b=>b.onclick=()=>{if(confirm("¿Borrar este billete?")){t.tickets.splice(+b.dataset.x,1);save();lista()}});
+}
+function formBillete(t,tabs){
+  const k=tkEdit>=0?{...t.tickets[tkEdit]}:{tipo:"avion"};
+  const inp=(id,lab,type="text",ph="",full="")=>`<div class="${full}"><label>${lab}</label><input type="${type}" id="k_${id}" placeholder="${ph}" value="${esc(k[id]||"")}"></div>`;
+  main.innerHTML=tabs+`<div class="types" style="grid-template-columns:repeat(5,1fr);gap:6px">${Object.entries(TIPOS).map(([id,v])=>`<div class="type ${k.tipo===id?"on":""}" data-t="${id}" style="padding:12px 2px;font-size:12px"><span class="i" style="font-size:24px">${v[0]}</span>${v[1]}</div>`).join("")}</div>
+  <div class="f2">${inp("orig","Origen","text","Madrid")}${inp("dest","Destino","text","Bogotá")}
+  ${inp("fecha","Fecha","date")}${inp("cia","Compañía","text","Iberia")}
+  ${inp("hsal","Hora salida","time")}${inp("hlleg","Hora llegada","time")}
+  ${inp("num","Nº vuelo / tren / línea","text","IB6587")}${inp("loc","Localizador / reserva","text","ABC123")}
+  ${inp("asiento","Asiento / vagón","text","12A")}${inp("puerta","Terminal / puerta / andén","text","T4")}
+  ${inp("precio","Precio","text","350 €","full")}
+  <div class="full"><label>Notas</label><textarea id="k_notas" rows="2" placeholder="Equipaje permitido, hora de facturación…">${esc(k.notas||"")}</textarea></div>
+  <div class="full"><label>Adjuntar billete (PDF o imagen, máx. 1,5 MB)</label><input type="file" id="k_file" accept="application/pdf,image/*"><div class="help" id="fn">${k.fname?"📎 "+esc(k.fname):""}</div></div></div>
+  <button class="btn" id="ksave">Guardar billete</button><button class="btn sec" id="kcancel">Cancelar</button>`;
+  bindTabs();
+  main.querySelectorAll(".type").forEach(e=>e.onclick=()=>{k.tipo=e.dataset.t;main.querySelectorAll(".type").forEach(x=>x.classList.toggle("on",x===e))});
+  $("#k_file").onchange=e=>{const f=e.target.files[0];if(!f)return;
+    if(f.size>1.5*1024*1024){toast("Archivo demasiado grande");e.target.value="";return}
+    const rd=new FileReader();rd.onload=()=>{k.file=rd.result;k.fname=f.name;$("#fn").textContent="📎 "+f.name};rd.readAsDataURL(f)};
+  $("#kcancel").onclick=()=>{tkEdit=null;lista()};
+  $("#ksave").onclick=()=>{
+    ["orig","dest","fecha","cia","hsal","hlleg","num","loc","asiento","puerta","precio"].forEach(f=>k[f]=$("#k_"+f).value.trim());
+    k.notas=$("#k_notas").value.trim();
+    if(!k.orig&&!k.dest){toast("Indica origen o destino");return}
+    const prev=t.tickets.slice();
+    if(tkEdit>=0)t.tickets[tkEdit]=k;else t.tickets.push(k);
+    t.tickets.sort((a,b)=>(a.fecha||"9")+(a.hsal||"")<(b.fecha||"9")+(b.hsal||"")?-1:1);
+    try{localStorage.setItem("maletas",JSON.stringify(S))}catch(e){t.tickets=prev;toast("No hay espacio: adjunto demasiado grande");return}
+    tkEdit=null;lista()};
+}
+$("#del").onclick=()=>{if(confirm("¿Borrar este viaje?")){S.trips.splice(cur,1);save();go("home")}};
+$("#share").onclick=async()=>{
+  const t=S.trips[cur];
+  const txt=`🧳 ${t.dest} — ${t.dia} de ${MESES[t.mes]} (${t.dias} días)\n\n`+(t.tickets||[]).map(k=>`${(TIPOS[k.tipo]||TIPOS.otro)[0]} ${k.orig} → ${k.dest} · ${fmtF(k.fecha)} ${k.hsal||""} ${k.cia||""} ${k.num||""} ${k.loc?"(loc. "+k.loc+")":""}`).join("\n")+"\n\n"+t.cats.map(c=>c.n.toUpperCase()+"\n"+c.items.map(i=>`${i.ok?"☑":"☐"} ${i.n}${i.q>1?" x"+i.q:""}`).join("\n")).join("\n\n");
+  try{if(navigator.share)await navigator.share({title:"Lista de equipaje",text:txt});else{await navigator.clipboard.writeText(txt);toast("Lista copiada")}}catch(e){}
+};
+function toast(m){const d=document.createElement("div");d.className="toast";d.textContent=m;$("#app").appendChild(d);setTimeout(()=>d.remove(),1800)}
+go("home");
+</script>
+</body>
+</html>
